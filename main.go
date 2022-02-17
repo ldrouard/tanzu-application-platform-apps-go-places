@@ -44,7 +44,7 @@ func CreatePlace(c *gin.Context) {
 	var newPlace Place
 	c.Bind(&newPlace)
 
-	stmt, err := Init().Prepare("insert into places (name, country, description, latitude, longitude) values(?,?,?,?,?);")
+	stmt, err := Init().Prepare("INSERT INTO places (name, country, description, latitude, longitude) VALUES (?,?,?,?,?);")
 
 	if err != nil {
 		fmt.Print(err.Error())
@@ -65,7 +65,7 @@ func GetAllPlaces(c *gin.Context) {
 		place  Place
 		places []Place
 	)
-	rows, err := Init().Query("select * from places;")
+	rows, err := Init().Query("SELECT * FROM places;")
 	if err != nil {
 		fmt.Print(err.Error())
 	}
@@ -88,7 +88,7 @@ func GetPlace(c *gin.Context) {
 		result gin.H
 	)
 	id := c.Param("id")
-	err := Init().QueryRow("select * from places where id = ?;", id).Scan(&place.Id, &place.Name, &place.Ctry, &place.Desc, &place.Lat, &place.Lon)
+	err := Init().QueryRow("SELECT * FROM places WHERE id = ?;", id).Scan(&place.Id, &place.Name, &place.Ctry, &place.Desc, &place.Lat, &place.Lon)
 
 	if err != nil {
 		// If no results send null
@@ -107,7 +107,7 @@ func GetPlace(c *gin.Context) {
 
 func DeletePlace(c *gin.Context) {
 	id := c.Query("id")
-	stmt, err := Init().Prepare("delete from places where id= ?;")
+	stmt, err := Init().Prepare("DELETE FROM places WHERE id= ?;")
 
 	if err != nil {
 		fmt.Print(err.Error())
@@ -127,7 +127,7 @@ func GetPlaceUrl(c *gin.Context) {
 		result gin.H
 	)
 	id := c.Param("id")
-	err := Init().QueryRow("select * from places where id = ?;", id).Scan(&place.Id, &place.Name, &place.Ctry, &place.Desc, &place.Lat, &place.Lon)
+	err := Init().QueryRow("SELECT * FROM places WHERE id = ?;", id).Scan(&place.Id, &place.Name, &place.Ctry, &place.Desc, &place.Lat, &place.Lon)
 
 	if err != nil {
 		result = gin.H{
