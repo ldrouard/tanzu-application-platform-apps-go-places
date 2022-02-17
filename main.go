@@ -140,7 +140,12 @@ func GetPlaceUrl(c *gin.Context) {
 		}
 	}
 
-	Url := "https://maps.google.com/maps?q=" + place.Lat + "," + place.Lon + "&t=k"
+  // Google Maps format
+	//Url := "https://maps.google.com/maps?q=" + place.Lat + "," + place.Lon + "&t=k"
+
+  // Openstreetmap format
+  Url := "https://www.openstreetmap.org/#map=15/" + place.Lat + "/" + place.Lon
+
 	result = gin.H{
 		"result": Url,
 	}
