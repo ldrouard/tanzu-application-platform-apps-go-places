@@ -8,7 +8,8 @@ metadata:
     - web
     - tanzu
   annotations:
-    'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/part-of=go-places'
+    backstage.io/kubernetes-label-selector: app.kubernetes.io/part-of=go-places
+    github.com/project-slug: ldrouard/tanzu-application-platform-apps-go-places
 spec:
   type: service
   lifecycle: experimental
